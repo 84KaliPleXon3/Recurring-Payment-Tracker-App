@@ -7,8 +7,8 @@ class Vendor(models.Model):
     url = models.CharField(max_length=50)
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
-    card= models.ForeignKey('Card', on_delete=models.SET_NULL, null=True) # set null to True so if card is deleted then vendor is NOT deleted.
-
+    card = models.ForeignKey('Card', on_delete=models.SET_NULL, null=True) # set null to True so if card is deleted then vendor is NOT deleted.
+        
     def __str__(self):
         return self.name
     

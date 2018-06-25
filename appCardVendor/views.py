@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
-from django.views.generic.list import ListView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Vendor, Card
-from django import forms
+from .forms import VendorForm
 
 # Create your views here.
 
@@ -16,26 +15,23 @@ class VendorListView(ListView):
 
 class VendorCreateView(CreateView):
     model = Vendor
-    fields = ['name', 'url', 'username', 'password', 'card']
-    template_name_suffix = '_create_form'
-    success_url = reverse_lazy('vendor_list')
-    def get_context_data(self, **kwargs):
-        # get the default context data
-        context = super(VendorCreateView, self).get_context_data(**kwargs)
-        # add extra field to the context
-        context['cards'] = Card.objects.all()
-        return context
+    form_class = VendorForm
+    
     
 class VendorUpdateView(UpdateView):
     model = Vendor
-    fields = ['name', 'url', 'username', 'password', 'card']
-    template_name_suffix = '_update_form'
-    success_url = reverse_lazy('vendor_list')
+    form_class = VendorForm
     def get_context_data(self, **kwargs):
         context = super(VendorUpdateView, self).get_context_data(**kwargs)
-        context['cards'] = Card.objects.all()
+        # get the card object corresponding to the vendor 
+        context['card'] = self.object.card 
         return context
 
+def load_card_details(request):
+    card_id = request.GET.get('card')
+    card = Card.objects.filter(card_id = card_id)
+    return render(request, 'appCardVendor/card_additional_data.html', {'card': card})
+    
 class VendorDeleteView(DeleteView):
     model = Vendor
     success_url = reverse_lazy('vendor_list')
@@ -46,12 +42,11 @@ class CardListView(ListView):
 class CardCreateView(CreateView):
     model = Card
     fields = ['nickname', 'name_on_card', 'type', 'card_number', 'security_code', 'expiry_date']
-    template_name_suffix = '_create_form'
     success_url = reverse_lazy('card_list')
         
 class CardUpdateView(UpdateView):
     model = Card
-    template_name_suffix = '_update_form'
+    fields = ['nickname', 'name_on_card', 'type', 'card_number', 'security_code', 'expiry_date']
     success_url = reverse_lazy('card_list')
 
 class CardDeleteView(DeleteView):
