@@ -1,0 +1,12 @@
+{% extends "appCardVendor/base_generic.html" %}
+
+{% block content %}
+
+<div>
+        <h1 class="display-4">Credit Card App</h1>
+        <p class="lead">Subheading that describes what the app can do for the user.</p>
+        <a class="btn btn-lg btn-success" href="{% url 'vendor_create_form' %}" role="button" >Add Vendor</a>
+        <a class="btn btn-lg btn-success" href="{% url 'card_create_form' %}"  role="button" >Add Credit Card</a>
+</div>
+
+{% endblock %}

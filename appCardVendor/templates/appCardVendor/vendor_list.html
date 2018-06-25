@@ -1,0 +1,24 @@
+{% extends "appCardVendor/base_generic.html" %}
+{% block content %}
+<div class="mb-3">
+    <h1>Vendors</h1>
+</div>
+{% if vendor_list %}
+    {% for vendor in vendor_list %}
+        <dl class="row">
+            <dt class="col-sm-6">
+                <a class="text-muted" href="{% url 'vendor_update_form' vendor.id %}">{{ vendor.name }}</a>
+            </dt>
+            <dt class="col-sm-1">
+                <a class="btn btn-light" href="{% url 'vendor_update_form' vendor.id %}">Edit</a>
+            </dt>
+            <dt class="col-sm-1">
+                <a class="btn btn-light" href="{% url 'vendor_confirm_delete' vendor.id %}">Delete</a>
+            </dt>
+        </dl>   
+    {% endfor %}          
+{% else %}
+    <p>There are no vendors registered your account.</p>
+{% endif %} 
+<a class="btn btn-success" href="{% url 'vendor_create_form' %}" role="button">Add a Vendor</a>
+{% endblock %}             

@@ -1,0 +1,24 @@
+{% extends "appCardVendor/base_generic.html" %}
+{% block content %}
+<div class="mb-3">
+<h1>Credit Cards</h1>
+</div>
+{% if card_list %}
+    {% for card in card_list %}
+        <dl class="row">
+            <dt class="col-sm-6">
+                <a class="text-muted" href="{% url 'card_update_form' card.id %}">{{ card.nickname }}</a>
+            </dt>
+            <dt class="col-sm-1">
+                <a class="btn btn-light" href="{% url 'card_update_form' card.id %}">Edit</a>
+            </dt>
+            <dt class="col-sm-1">
+                <a class="btn btn-light" href="{% url 'card_confirm_delete' card.id %}">Delete</a>
+            </dt>
+        </dl>   
+    {% endfor %}  
+{% else %}
+    <p>There are no credit cards registered to your account.</p>
+{% endif %} 
+<a class="btn btn-success" href="{% url 'card_create_form' %}" role="button">Add a Card</a>
+{% endblock %}        

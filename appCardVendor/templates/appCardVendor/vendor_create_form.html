@@ -1,0 +1,31 @@
+{% extends "appCardVendor/base_generic.html" %}
+
+{% block content %}
+<h1>Add a Vendor</h1>
+<form method="post">
+    {% csrf_token %}
+    <table>
+        {{ form }}
+        
+        
+        
+    
+     </table>
+     <div class="reveal-if-active">
+        {% for card in cards %}
+            
+                <tr>
+                    <th>Card Number:</th>
+                    <td> {{ card.card_number}}</td>
+                </tr>
+                <tr>
+                    <th>Expiry Date:</th> 
+                    <td>{{ card.expiry_date}}</td>
+                </tr>
+           
+        {% endfor %}
+    </div>
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
