@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Vendor, Card
-from .forms import VendorForm
+from .forms import VendorForm, CardForm
 
 # Create your views here.
 
@@ -41,12 +41,12 @@ class CardListView(ListView):
 
 class CardCreateView(CreateView):
     model = Card
-    fields = ['nickname', 'name_on_card', 'type', 'card_number', 'security_code', 'expiry_date']
+    form_class = CardForm
     success_url = reverse_lazy('card_list')
         
 class CardUpdateView(UpdateView):
     model = Card
-    fields = ['nickname', 'name_on_card', 'type', 'card_number', 'security_code', 'expiry_date']
+    form_class = CardForm
     success_url = reverse_lazy('card_list')
 
 class CardDeleteView(DeleteView):

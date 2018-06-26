@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Vendor</h1>
-<form method="post" id="vendorForm" data-card-url="{% url 'load_card_data' %}" novalidate>
+<form method="post" id="vendorForm" data-card-url="{% url 'load_card_data' %}">
     {% csrf_token %}
     <table>
         {{ form }}</br>
