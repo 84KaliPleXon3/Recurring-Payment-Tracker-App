@@ -1,0 +1,15 @@
+{% extends "appCardVendor/base_generic.html" %}
+
+{% block content %}
+
+<h1>Delete Vendor</h1>
+
+<p>Are you sure you want to delete <strong>{{ vendor }}</strong>?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  
+  <button type="submit" class="btn btn-danger">Yes, Delete</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<!-- <p>{{ card.card_number}} {{ card.expiry_date}}</p> -->
+
+<!-- 
+<table>
+    <tr>
+        <th>Card Number:</th><td>{{ card.card_number}}</td>
+    </tr>
+    <tr>
+        <th>Expiry Date:</th><td>{{ card.expiry_date}}</td>
+    </tr>
+</table>
+-->
+<table>
+    <tr>
+        <th><label for="card_number">Card Number:</label></th>
+        <td><input type="text" name="card_data" id="card_number" placeholder="{{card.card_number}}" disabled></td>
+    </tr>
+    <tr>
+        <th><label for="expiry_date">Expiry Date:</label></th>
+        <td><input type="text" name="card_data" id="expiry_date" placeholder="{{card.expiry_date}}" disabled></td>
+    </tr>
+</table>

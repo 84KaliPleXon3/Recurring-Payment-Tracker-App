@@ -27,10 +27,10 @@ class VendorUpdateView(UpdateView):
         context['card'] = self.object.card 
         return context
 
-def load_card_details(request):
+def load_card_data(request):
     card_id = request.GET.get('card')
-    card = Card.objects.filter(card_id = card_id)
-    return render(request, 'appCardVendor/card_additional_data.html', {'card': card})
+    card = Card.objects.get(pk=card_id)
+    return render(request, 'appCardVendor/load_card_data.html', {'card': card})
     
 class VendorDeleteView(DeleteView):
     model = Vendor

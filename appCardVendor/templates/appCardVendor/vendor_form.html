@@ -2,46 +2,47 @@
 
 {% block content %}
 <h1>Vendor</h1>
-<form method="post" id="vendorForm" data-card-url="{% url 'ajax_load_card_details' %}" novalidate>
+<form method="post" id="vendorForm" data-card-url="{% url 'load_card_data' %}" novalidate>
     {% csrf_token %}
     <table>
-        {{ form }}
-    
-    <div id="additional_card_data">
-       
-            <tr>
-                <th>Card Number:</th>
-                <td> {{ card.card_number}}</td>
-            </tr>
-            <tr>
-                <th>Expiry Date:</th> 
-                <td>{{ card.expiry_date}}</td>
-            </tr>
+        {{ form }}</br>
         
-    </div>
     </table>
-    <input type="submit" value="Submit" />
-    <a href="{% url 'vendor_list' %}">Cancel</a>
+    <div id="ajax_card_data">
+        <table>
+            <tr>
+                <th><label for="card_number">Card Number:</label></th>
+                <td><input type="text" name="card_data" id="card_number" placeholder="{{card.card_number}}" disabled></td>
+            </tr>
+            <tr>
+                <th><label for="expiry_date">Expiry Date:</label></th>
+                <td><input type="text" name="card_data" id="expiry_date" placeholder="{{card.expiry_date}}" disabled></td>
+            </tr>
+        </table>
+    </div>
+    <!-- <input type="submit" value="Submit" /> -->
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a class="btn btn-secondary" href="{% url 'vendor_list' %}">Cancel</a>
+    
 </form>
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script>
-    $("#id_card").change(function () {
-      var url = $("#vendorForm").attr("data-card-url");
-      var cardId = $(this).val();
-      $.ajax({
-        url: url,
-        data: {
-          'card': cardId
-        },
-        success: function (data) {
-          $("#additional_card_data").html(data);
-        }
-      });
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_card").change(function () { 
+        var url = $("#vendorForm").attr("data-card-url");
+        var card_id = $(this).val();
+        console.log(card_id)
+        $.ajax({
+            url: url,
+            data: {
+                'card': card_id
+            },
+            success: function (data) {
+                $('#ajax_card_data').html(data);
+            }
+        });
     });
-  </script>
+</script>
   
 {% endblock %}
+

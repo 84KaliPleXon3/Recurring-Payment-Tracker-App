@@ -10,7 +10,7 @@ urlpatterns = [
     path('vendor/create', views.VendorCreateView.as_view(), name='vendor_create_form'),
     path('vendor/<int:pk>/update', views.VendorUpdateView.as_view(), name='vendor_update_form'),
     path('vendor/<int:pk>/delete', views.VendorDeleteView.as_view(), name='vendor_confirm_delete'),
-    path('ajax/load_card_details/', views.load_card_details, name='ajax_load_card_details'), 
+    path('load_card_data', views.load_card_data, name='load_card_data'), 
     # Card Views
     path('cards', views.CardListView.as_view(), name='card_list'),
     path('card/create', views.CardCreateView.as_view(), name='card_create_form'),
