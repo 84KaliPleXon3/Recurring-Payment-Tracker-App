@@ -1,7 +1,7 @@
 {% extends "appCardVendor/base_generic.html" %}
 
 {% block content %}
-<h1>Vendor</h1>
+<h1>Payee</h1>
 <form method="post" id="vendorForm" data-card-url="{% url 'load_card_data' %}">
     {% csrf_token %}
     <table>

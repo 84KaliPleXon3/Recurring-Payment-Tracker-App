@@ -1,7 +1,7 @@
 {% extends "appCardVendor/base_generic.html" %}
 {% block content %}
 <div class="mb-3">
-    <h1>Vendors</h1>
+    <h1>Payees</h1>
 </div>
 {% if vendor_list %}
     {% for vendor in vendor_list %}
@@ -18,7 +18,7 @@
         </dl>   
     {% endfor %}          
 {% else %}
-    <p>There are no vendors registered your account.</p>
+    <p>There are no payees registered your account.</p>
 {% endif %} 
-<a class="btn btn-success" href="{% url 'vendor_create_form' %}" role="button">Add a Vendor</a>
+<a class="btn btn-success" href="{% url 'vendor_create_form' %}" role="button">Add a Payee</a>
 {% endblock %}             
