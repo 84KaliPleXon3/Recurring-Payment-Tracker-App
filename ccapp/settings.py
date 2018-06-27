@@ -20,11 +20,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'iu7frc5q$m=$^_5skg40(n)n3t-hvoxu!2dq4)h3!fupuh+diw'
+# Heroku - new for heroku deplyment: 
+# SECRET_KEY = 'iu7frc5q$m=$^_5skg40(n)n3t-hvoxu!2dq4)h3!fupuh+diw'
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+# Heroku - new for heroku deployment
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
+# Heroku - edited for heroku deployment
 ALLOWED_HOSTS = ['obscure-garden-29684.herokuapp.com', '127.0.0.1']
 
 
@@ -42,7 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # heroku - add whitenoise
+    # Heroku - new for heroku deployment
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -122,6 +128,7 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
+# Heroku - new for heroku deployment:
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
