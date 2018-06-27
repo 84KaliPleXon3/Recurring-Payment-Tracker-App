@@ -16,11 +16,13 @@ class VendorListView(ListView):
 class VendorCreateView(CreateView):
     model = Vendor
     form_class = VendorForm
+    success_url = reverse_lazy('vendor_list')
     
     
 class VendorUpdateView(UpdateView):
     model = Vendor
     form_class = VendorForm
+    success_url = reverse_lazy('vendor_list')
     def get_context_data(self, **kwargs):
         context = super(VendorUpdateView, self).get_context_data(**kwargs)
         # get the card object corresponding to the vendor 
