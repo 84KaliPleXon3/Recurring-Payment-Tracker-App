@@ -25,7 +25,7 @@ SECRET_KEY = 'iu7frc5q$m=$^_5skg40(n)n3t-hvoxu!2dq4)h3!fupuh+diw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [https://obscure-garden-29684.herokuapp.com/]
 
 
 # Application definition
