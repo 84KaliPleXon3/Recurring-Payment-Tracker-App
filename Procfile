@@ -1,0 +1,1 @@
+web: gunicorn ccapp.wsgi --log-file -
